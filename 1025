@@ -1,0 +1,62 @@
+color me = color(20);
+color obj1 = color(0);
+color obj2 = color(1);
+float x = 0;
+float y = 100;
+float speed = 1;
+
+
+
+float my_x = 150;
+float my_y = 10;
+float x2 = 0;
+void setup() {
+  size(400,300);
+}
+
+void draw() {
+  background(255);
+  move();
+  display();
+  
+  // 滑鼠控制物件
+  if (mousePressed){
+    my_x = mouseX;
+    my_y = mouseY;
+  }  
+  
+  // 勝利條件
+  if (my_y >200){
+    background(255, 204, 0);  
+    textSize(64);
+    text("win!", 150, 150);  
+  }
+    
+  
+}
+
+void move() {
+  x = x + speed;
+  x2 = x2 + 2*speed;
+  if (x > width) {
+    x = 0;
+  }
+  if (x2 > width) {
+    x2 = 0;
+  }
+}
+
+void display() {
+  fill(obj1);
+  rect(x,y,31,10);  //障礙物0
+  rect(x,y+40,31,10);   //障礙物2
+  fill(obj2);
+  rect(x2,y+20,31,10);  //障礙物1
+  
+  
+  rect(my_x,my_y,10, 10);    //本體
+  
+  line(0, 200, 400, 200);   //勝利線
+  
+  
+}
